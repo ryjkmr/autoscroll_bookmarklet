@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    #wrapper {
+      margin-left: 20px;
+      width: 80%;
+    }
+
+    #chord {
+      background-color: lightgray;
+      padding-left: 10%;
+    }
+
+    div#chord p {
+      font-size: xx-large;
+      font-weight: bold;
+      margin: 2em 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id=wrapper>
+    <h1> Auto Scroll Bookmarklet Sample Page</h1>
+    <hr>
+    <p>コード譜サイトを見ながら楽器の練習をするときなどに、任意の速度で自動スクロールさせるブックマークレットです</p>
+    <p>ブックマークレットって何？という方は、適当にぐぐってみて下さい</p>
+    <p>スクロールの開始位置と終了位置、曲の長さを設定できます</p>
+    <p>うまく動かないときは日本語入力が干渉しているかもしれません</p>
+    <p>MacのChromeでしか試していません。表示するサイトによってもうまく動かないことがあります</p>
+    <p>MITライセンス。改変自由。本ソフトウエアの利用による如何なる損害に対して作者は責任を追いません　ryjkmr.com</p>
+    <hr>
+    <ol>
+      <li>↓このリンクをドラッグ&ドロップするなどしてブラウザのブックマークに登録</li>
+      <a href="javascript:autoscroll='';const AUTOSCROLL_STEP=2;var autoScroll_start=0;var elm=document.documentElement;var autoScroll_end=elm.scrollHeight-elm.clientHeight;var autoScroll_time=30;var autoScroll_lastScrollPosition=0;let isTimerOn=false;var autoScrollTimer;window.addEventListener('keydown',function(event){if(isTimerOn){console.log('timer cleared');clearInterval(autoScrollTimer);isTimerOn=false;return}console.log(event.code);switch(event.code){case'KeyA':autoScroll_start=window.pageYOffset;break;case'KeyB':autoScroll_end=window.pageYOffset;break;case'KeyT':const userInput=window.prompt('スクロールにかける時間(min sec)を入力');const temp=userInput.split(' ');autoScroll_time=parseInt(temp[0])*60+parseInt(temp[1]);if(!autoScroll_time){autoScroll_time='30';alert('エラー：分と秒を空白で区切って入力して下さい')}console.log(autoScroll_time);break;case'KeyS':window.scrollTo(0,autoScroll_start);const autoScroll_interval=autoScroll_time/(autoScroll_end-autoScroll_start)*1000*AUTOSCROLL_STEP;console.log(autoScroll_interval);autoScrollTimer=setInterval(function(){window.scrollBy({left:0,top:AUTOSCROLL_STEP,behavior:'smooth'});if(window.pageYOffset>=autoScroll_end)clearInterval(autoScrollTimer)},autoScroll_interval);isTimerOn=true;break}});void(0);
+        ">Auto Scroll</a>
+      <p>（この場で試すだけならクリックしてstep4へ）</p>
+      <li>自動スクロールさせたいサイト（ページ）を表示</li>
+      <li>登録したブックマークをクリックor選択（見かけ上は何の変化もありません）</li>
+      <br>
+      <li>【開始位置の登録】スクロールを開始させたい位置を表示してキーボードのAを押す</li>
+      <li>【終了位置の登録】スクロールを終了させたい位置を表示してキーボードのBを押す</li>
+      <p></p>
+      <li>【時間設定】キーボードのTを押して表示されるダイアログに曲の長さを入力。分と秒は空白で区切る（例：3分15秒＝"3 15"）</li>
+      <li>【スクロール開始】曲の再生を開始、キーボードのSキーを押すと自動スクロールが始まる</li>
+      <p>自動スクロール中に何かキーを押すと止まります。Sキーを押すと再度最初からスクロールします</p>
+    </ol>
+    <hr>
+    <p> </p>
+    <div id="chord">
+      <br>
+      <h1>sample song</h2>
+        <caption>譜面はデモ用のもので実際の曲ではありません</caption>
+        <p>Bb Gm7 Cm7 F7<br>いろはにほへと</p>
+        <p>Dm7 Gm7 Cm7 F7<br>ちりぬるを</p>
+        <p>Bb7 Bb7/D Eb7 Eo7<br>わかよたれそ</p>
+        <p>Bb/F F7 Bb F7<br>つねならむ</p>
+        <br>
+        <p>Bb Gm7 Cm7 F7<br>うゐのおくやま</p>
+        <p>Dm7 Gm7 Cm7 F7<br>けふこえて</p>
+        <p>Bb7 Bb7/D Eb7 Eo7<br>あさきゆめみし</p>
+        <p>Bb/F F7 Bb Bb<br>ゑひもせすん</p>
+        <br>
+        <p>D7 % G7 %<br>諸行無常　是正滅法　</p>
+        <p>C7 % F7 %<br>生滅滅己　寂滅為楽</p>
+        <br>
+        <p>Bb Gm7 Cm7 F7<br>いろはにほへ</p>
+        <p>Dm7 Gm7 Cm7 F7<br>ちりぬるを</p>
+        <p>Bb7 Bb7/D Eb7 Eo7<br>わかよたれそ</p>
+        <p>Bb/F F7 Bb F7<br>つねならむ</p>
+    </div>
+  </div>
+
+</body>
+
+</html>
